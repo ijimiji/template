@@ -18,6 +18,7 @@ find_package(Qt5 COMPONENTS Widgets REQUIRED)
 add_executable(KR
     src/main.cpp
     src/list.h
+    src/win.h
     # src/main.moc
     # resources.qrc
     # mainwindow.ui
