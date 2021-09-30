@@ -1,10 +1,5 @@
 #include "listcontroller.h"
 #include <QApplication>
-#include <QKeySequence>
-#include <QShortcut>
-#include <qboxlayout.h>
-#include <qpushbutton.h>
-#include <qwidget.h>
 #include <vector>
 using std::vector;
 

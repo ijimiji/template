@@ -6,14 +6,8 @@
 #include <QObject>
 #include <QVBoxLayout>
 #include <QWidget>
-#include <iostream>
-#include <qabstractitemmodel.h>
-#include <qabstractspinbox.h>
-#include <qboxlayout.h>
-#include <qlineedit.h>
-#include <qlistwidget.h>
-#include <qpushbutton.h>
-#include <qvariant.h>
+#include <QVariant>
+#include <QPushButton>
 
 class ListViewer : public QWidget {
     Q_OBJECT
