@@ -13,12 +13,14 @@ if(CMAKE_VERSION VERSION_LESS "3.7.0")
     set(CMAKE_INCLUDE_CURRENT_DIR ON)
 endif()
 
+if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    set (CMAKE_PREFIX_PATH "/usr/local/Cellar/qt@5/5.15.2/lib/cmake/Qt5")
+endif()
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
+file(GLOB SOURCES src/*)
 
 add_executable(KR
-    src/main.cpp
-    src/list.h
-    src/win.h
+    ${SOURCES}
     # src/main.moc
     # resources.qrc
     # mainwindow.ui
