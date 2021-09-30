@@ -4,10 +4,10 @@
 #include <QLineEdit>
 #include <QListWidget>
 #include <QObject>
-#include <QVBoxLayout>
-#include <QWidget>
-#include <QVariant>
 #include <QPushButton>
+#include <QVBoxLayout>
+#include <QVariant>
+#include <QWidget>
 
 class ListViewer : public QWidget {
     Q_OBJECT
