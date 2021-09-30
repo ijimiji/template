@@ -1,18 +1,19 @@
 #pragma once
 
+#include <QHBoxLayout>
+#include <QLineEdit>
 #include <QListWidget>
 #include <QObject>
-#include <QWidget>
-
-#include <QHBoxLayout>
 #include <QVBoxLayout>
+#include <QWidget>
+#include <iostream>
+#include <qabstractitemmodel.h>
 #include <qabstractspinbox.h>
 #include <qboxlayout.h>
 #include <qlineedit.h>
 #include <qlistwidget.h>
 #include <qpushbutton.h>
 #include <qvariant.h>
-#include <QLineEdit>
 
 class ListViewer : public QWidget {
     Q_OBJECT
@@ -23,6 +24,7 @@ class ListViewer : public QWidget {
     QHBoxLayout *buttonLayout = new QHBoxLayout(this);
     QListWidget *listView = new QListWidget();
     QLineEdit *inputField = new QLineEdit();
+
   public:
     ListViewer(std::vector<int> rawItems) {
         QStringList items = QStringList();
@@ -35,31 +37,14 @@ class ListViewer : public QWidget {
         verticalLayout->addWidget(listView);
         verticalLayout->addWidget(inputField);
         verticalLayout->addLayout(buttonLayout);
-        connect(submitButton, &QPushButton::released,
-        [this]{
+        connect(submitButton, &QPushButton::released, [this] {
             auto item = inputField->text();
             listView->addItem(item);
             inputField->clear();
         });
 
-        QObject::connect(listView, SIGNAL(doubleClicked(QModelIndex)), this,
-                         SLOT(onListDoubleClicked(QModelIndex)));
+        connect(popButton, &QPushButton::released,
+                [this] { delete listView->currentItem(); });
         this->show();
     }
-  public slots:
-    void onListDoubleClicked(const QModelIndex &i) {
-        if (!i.isValid())
-            return;
-        //Нет индекса выбранного элемента -  ничего не делать
-        QListWidget *w = dynamic_cast<QListWidget *>(
-            sender()); //Узнать, какой виджет послал сигнал
-        if (w) { //Если удалось это сделать,
-            QListWidgetItem *item = w->takeItem(i.row());
-            //то попытаться получить элемент
-            if (item) { //Если и это удалось,
-                delete item; //удалить, или Ваша обработка item
-            }
-        }
-    }
-
 };
