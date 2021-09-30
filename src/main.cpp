@@ -1,25 +1,16 @@
-#include <QApplication>
 #include "listcontroller.h"
+#include <QApplication>
 #include <QKeySequence>
 #include <QShortcut>
+#include <qboxlayout.h>
+#include <qpushbutton.h>
+#include <qwidget.h>
+#include <vector>
+using std::vector;
 
 int main(int argc, char *argv[]) {
- QApplication a(argc, argv);
- QListWidget listWidget; //будущий список
- listWidget.addItems (listItems); 
-  //будущие предустановленные элементы списка
- listWidget.resize (640,480); 
- listWidget.show(); //запуск и отображение виджета
- ListContoller listController(&listWidget);
- QObject::connect(&listWidget, SIGNAL(doubleClicked(QModelIndex)),
-  &listController,SLOT(onListDoubleClicked(QModelIndex)));
-  //Сигнал "двойной щелчок" списка связали со слотом 
-QShortcut *shortcut = new
-  QShortcut(QKeySequence(Qt::Key_1),&listWidget);
-  //Создали хоткей для клавиши Insert
-QObject::connect(shortcut, SIGNAL(activated()),
-  &listController,SLOT(onListClicked()));
-  //И заставили его вызвать второй слот контроллера
- /* Здесь будет настройка сигналов виджета */
- return a.exec();
+    QApplication a(argc, argv);
+    vector<int> items = {1, 2, 3, 123,141, 1};
+    auto x = new ListViewer(items);
+    return a.exec();
 }
