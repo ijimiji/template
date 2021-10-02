@@ -3,14 +3,12 @@
 #include <QHBoxLayout>
 #include <QLineEdit>
 #include <QListWidget>
-#include <QObject>
 #include <QPushButton>
 #include <QVBoxLayout>
 #include <QVariant>
 #include <QWidget>
 
 class ListViewer : public QWidget {
-    Q_OBJECT
   private:
     QPushButton *submitButton = new QPushButton("Push");
     QPushButton *popButton = new QPushButton("Pop");
