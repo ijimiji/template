@@ -16,15 +16,12 @@ endif()
 if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
     set (CMAKE_PREFIX_PATH "/usr/local/Cellar/qt@5/5.15.2/lib/cmake/Qt5")
 endif()
+
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
 file(GLOB SOURCES src/*)
 
 add_executable(KR
     ${SOURCES}
-    # src/main.moc
-    # resources.qrc
-    # mainwindow.ui
-    # mainwindow.cpp
 )
 
 target_link_libraries(KR Qt5::Widgets)

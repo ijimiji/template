@@ -4,12 +4,12 @@
 #include <QHBoxLayout>
 #include <QLineEdit>
 #include <QListWidget>
+#include <QMessageBox>
 #include <QPushButton>
 #include <QVBoxLayout>
 #include <QVariant>
 #include <QWidget>
-#include <iostream>
-#include <QMessageBox>
+
 class View : public QWidget {
   private:
     QPushButton *submitButton = new QPushButton("Push");
@@ -35,9 +35,10 @@ class View : public QWidget {
         connect(submitButton, &QPushButton::released, [this] {
             auto item = inputField->text();
             int parsedNumber = item.toInt();
-            if (parsedNumber == 0 && item != "0"){
-               QMessageBox::warning(this, "Error", "Your input is not an integer number.");
-            } else{
+            if (parsedNumber == 0 && item != "0") {
+                QMessageBox::warning(this, "Error",
+                                     "Your input is not an integer number.");
+            } else {
                 listView->addItem(item);
                 viewListener->addItem(parsedNumber);
             }
@@ -45,12 +46,13 @@ class View : public QWidget {
         });
 
         connect(popButton, &QPushButton::released, [this] {
-          if (listView->count() == 0){
-               QMessageBox::warning(this, "Error", "You haven't entered any elements yet.");
-          } else {
-               viewListener->removeItem(listView->currentRow());
-               delete listView->currentItem();
-          }
+            if (listView->count() == 0) {
+                QMessageBox::warning(this, "Error",
+                                     "You haven't entered any elements yet.");
+            } else {
+                viewListener->removeItem(listView->currentRow());
+                delete listView->currentItem();
+            }
         });
         this->setWindowTitle("MVC exam");
         this->show();
